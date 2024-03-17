@@ -1,8 +1,9 @@
-function Sample() {
 
+function Sample() {
+    const data = `JS`
     return (
       <>
-        <h1>Sample Component React App</h1>
+        <h1>Sample Component React{data} App</h1>
       </>
     )
   }
