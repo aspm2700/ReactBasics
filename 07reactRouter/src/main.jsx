@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import { RouterProvider, createBrowserRouter, createRoutesFromElements,Route } from 'react-router-dom'
+import { RouterProvider, createBrowserRouter, createRoutesFromElements,Route,Navigate } from 'react-router-dom'
 import Layout from './Layout.jsx'
 import {Home,About,Contact,User,Github} from './components/index.js'
 import { githubInfoLoader } from './components/Github/Github.jsx'
@@ -36,7 +36,8 @@ const router = createBrowserRouter(
       <Route path="about" element={<About/>}/>
       <Route path="contact" element={<Contact/>}/>
       <Route path="user/:userid" element={<User/>}/>
-      <Route loader={githubInfoLoader} path="github" element={<Github/>}/>
+      <Route path="github" element={<Navigate to="/github/aspm2700"/>}/>
+      <Route loader={githubInfoLoader} path="github/:username" element={<Github/>}/>
     </Route>
   )
 )
