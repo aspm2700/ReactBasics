@@ -8,14 +8,11 @@ function App() {
 
   const [themeMode, setThemeMode] = useState('light')
 
-  const lightTheme = () => {
-    setThemeMode("light")
+  const switchTheme = (theme) => {
+    setThemeMode(theme)
   }
 
-  const darkTheme = () => {
-    setThemeMode("dark")
-  }
-
+  
   //actual theme changer
 
   useEffect(()=>{
@@ -29,7 +26,7 @@ function App() {
   },[themeMode])
 
   return (
-    <ThemeProvider value={{themeMode, lightTheme, darkTheme}}>
+    <ThemeProvider value={{themeMode, switchTheme}}>
       <div className="flex flex-wrap min-h-screen items-center h-24">
         <div className="w-full">
             <div className="w-full max-w-sm mx-auto flex justify-end mb-4">
