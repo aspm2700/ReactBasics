@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {removeTodo,updateInput} from '../features/todo/todoSlice'
+import {removeTodo,updateTodoInput} from '../features/todo/todoSlice'
 
 function Todos() {
     const todosData = useSelector(state => state.todos)
@@ -10,7 +10,7 @@ function Todos() {
   return (
     <>
     <div>Todos</div>
-
+    
     <ul className="list-none">
         {todos.map((todo) => (
           <li
@@ -20,7 +20,7 @@ function Todos() {
             <div className='text-white'>{todo.text}</div>
 
             <button
-             onClick={() => dispatch(updateInput(todo.text))}
+             onClick={() => dispatch(updateTodoInput(todo))}
               className="text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded text-md"
             >
               Update

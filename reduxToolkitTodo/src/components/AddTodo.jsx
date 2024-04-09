@@ -1,21 +1,28 @@
 import {useDispatch,useSelector} from 'react-redux'
-import {addTodo,updateInput} from '../features/todo/todoSlice' 
+import {addTodo,updateInput, updateTodo} from '../features/todo/todoSlice' 
+import React from 'react'
 
 function AddTodo() {
 
-    const input = useSelector(state=>state.input)
+    const {input,todoId} = useSelector(state=>state)
 
     const dispatch = useDispatch()
 
     const addTodoHandler = (e) => {
         e.preventDefault()
-        dispatch(addTodo(input))
+        if(typeof todoId === 'undefined' || todoId === null || todoId === '')
+          dispatch(addTodo(input))
+        else
+          dispatch(updateTodo({id: todoId, text: input}))
         dispatch(updateInput(''))
+        
     }
 
     const updateTodoHandler = (e) => {
         dispatch(updateInput(e.target.value))
     }
+
+     
 
         
     return (
@@ -27,11 +34,12 @@ function AddTodo() {
         value={input}
         onChange={(e) => updateTodoHandler(e)}
       />
+      
       <button
         type="submit"
         className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
       >
-        Add Todo
+        { typeof todoId === 'undefined' || todoId === null || todoId === '' ? "Add Todo" : "Update Todo"}
       </button>
     </form>
   )
